@@ -4,7 +4,7 @@ import {Archive, Clock, Message} from 'iconsax-react-native';
 import React from 'react';
 import { fontType, colors } from '../theme';
 
-const ItemSmall = ({item}) => {
+const ItemProduct= ({item}) => {
   return (
     <View style={styles.cardItem}>
       <FastImage
@@ -41,7 +41,7 @@ const ItemSmall = ({item}) => {
   );
 };
 
-export default ItemSmall;
+export default ItemProduct;
 const styles = StyleSheet.create({
   listCard: {
     paddingHorizontal: 24,

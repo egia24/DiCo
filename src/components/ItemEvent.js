@@ -4,7 +4,7 @@ import {Archive, Clock, Message} from 'iconsax-react-native';
 import React from 'react';
 import { fontType, colors } from '../theme';
 
-const ItemSmall = ({item}) => {
+const ItemEvent= ({item}) => {
   return (
     <View style={styles.cardItem}>
       <FastImage
@@ -41,7 +41,7 @@ const ItemSmall = ({item}) => {
   );
 };
 
-export default ItemSmall;
+export default ItemEvent;
 const styles = StyleSheet.create({
   listCard: {
     paddingHorizontal: 24,
@@ -55,25 +55,29 @@ const styles = StyleSheet.create({
   },
   cardCategory: {
     color: colors.black(),
-    fontSize: 15,
+    fontSize: 17,
     fontFamily: fontType['Pjs-ExtraBold'],
   },
   cardTitle: {
-    fontSize: 10,
+    fontSize: 15,
     fontFamily: fontType['Pjs-Bold'],
     color: colors.grey(),
   },
   cardText: {
-    fontSize: 15,
+    fontSize: 10,
     fontFamily: fontType['Pjs-ExtraBold'],
     color: colors.grey(),
   },
   cardImage: {
     width: 100,
-    height: 120,
+    height: 140,
     resizeMode: 'cover',
-    borderBottomLeftRadius : 10,
+    borderRadius : 10,
     backgroundColor: "white",
+    elevation :10,
+    borderTopRightRadius : 0,
+    borderBottomRightRadius :0,
+    elevation: 1,
   },
   cardInfo: {
     flexDirection: 'row',
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     borderTopRightRadius: 10,
-    borderBottomLeftRadius : 10,
     elevation: 1,
   },
 });

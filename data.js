@@ -1,27 +1,4 @@
-export const CategoryList = [
-    {
-      id: 1,
-      categoryName: 'Product',
-    },
-    {
-      id: 2,
-      categoryName: 'Event',
-    },
-    {
-      id: 3,
-      categoryName: 'Tutorial',
-    },
-    {
-      id: 4,
-      categoryName: 'Sports History',
-    },
-    {
-      id: 5,
-      categoryName: 'Contact',
-    },
-  ];
-  
-  export const BlogList = [
+  export const product = [
     {
       id: 1,
       title: 'Ada banyak peralatan olahraga sepak bola yang dapat kamu beli agar permainan kamu lebih baik',
@@ -82,5 +59,94 @@ export const CategoryList = [
       image: 'https://marketplace.canva.com/EAFrsqv6wps/1/0/1131w/canva-kuning-hijau-simpel-ilustrasi-kompetisi-futsal-poster-7X4ud5Cbxqw.jpg',
       createdAt: '28 Mei, 2023',
     },
+    {
+      id: 11,
+      title: 'Menggunakan frame HM Graphite / Tungsten dan Shaftnya menggunakan	HM Graphite / NANOMESH NEO kemudian untuk length 10 mm longer',
+      category: 'Astrox 3 DG ST',
+      createdAt: 'Rp450.000.00',
+      image: 'https://www.yonex.com/media/catalog/product/a/x/ax3dg-st.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+    },
+    {
+      id: 12,
+      title: 'Menggunakan frame	Aluminum dan shaft menggunakan	Graphite lalu untuk weightnya Grip	3U (Avg. 88g)',
+      category: 'Astrox E 13',
+      image: 'https://www.yonex.com/media/catalog/product/a/x/axe13_blackblue.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+      createdAt: 'Rp1.000.000.00',
+    },
+    {
+      id: 13,
+      title : 'YONEX AEROSENSA shuttlecocks are the official shuttlecock for the world’s leading international tournaments. ',
+      category: 'Aerosensa 50',
+      image: 'https://www.yonex.com/media/catalog/product/a/e/aerosensa_50.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+      createdAt: 'Rp200.000.00',
+    },
+    {
+      id: 14,
+      title : 'The combination of close-to-feather shuttlecock flight performance and four to five times more durability ',
+      category: 'Mavis 2000',
+      image: 'https://www.yonex.com/media/catalog/product/m/a/mavis2000w.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+      createdAt: 'Rp150.000.00',
+    },
+    {
+      id: 15,
+      title : 'Terdapat color(s) yaitu	New Color Lightning Yellow launching June 2023, Sky Blue, Black, Black / Orange, dan untuk sizenya (LxWxH)	75 x 13 x 30cm',
+      category: 'Team Tournamet Bag',
+      image: 'https://www.yonex.com/media/catalog/product/b/a/ba42331w_bkor.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+      createdAt: 'Rp400.000.00',
+    },
+    {
+      id: 16,
+      category: 'Pro Racquet Bag',
+      title : 'Terdapat color(s) yaitu New Color Mist Purpl Smash Pink,Fine Blue, Tango Red, Green Purple, Black, dan untk sizenya (LxWxH)	78 x 38 x 34 cm',
+      image: 'https://www.yonex.com/media/catalog/product/b/a/ba92229_tagr.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+      createdAt: 'Rp700.000.00',
+    },
+    {
+      id: 17,
+      title : 'Terdapat color(s) yaitu New Color Lightning Yellow launching June 2023, Black, Fine Blue dan untuk sizenya (LxWxH)	31 x 20.5 x 47 cm (26L)',
+      category: 'Pro Backpack M',
+      image: 'https://www.yonex.com/media/catalog/product/b/a/ba92212m_lny.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
+      createdAt: 'Rp800.000.00',
+    },
+    
   ];
   
+  export const event = [
+    {
+      id: 1,
+      title : 'Diselenggarakan di Gor Pacitan 30 Aug 2023 pukul 19.00 WIB ',
+      category: 'Badminton',
+      image: 'https://marketplace.canva.com/EAFn2B---Eg/1/0/1131w/canva-merah-dan-hijau-ilustrasi-badminton-rutin-a4-yCRLF3E-Qtw.jpg',
+      createdAt: '28 Aug, 2023',
+    },
+    {
+      id: 2,
+      category: 'Basket',
+      title : 'Diselenggarakan di Lapangan ITN 2 Malang 28 Aug 2023 pukul 15.00 WIB ',
+      image: 'https://img.freepik.com/free-vector/colored-vintage-basketball-championship-poster_1284-39316.jpg',
+      createdAt: '24 Aug, 2023',
+    },
+    {
+      id: 3,
+      category: 'Tennis',
+      title : 'Diselenggarakan di Lapangan Singosari 20 March 2023 pukul 16.00 WIB ',
+      image: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/tennis-poster-design-template-129fa4d1a11e810f4a1bc0514588334b_screen.jpg?ts=1645879031',
+      createdAt: '15 March, 2023',
+      totalComments: 89,
+    },
+    {
+      id: 4,
+      category: 'Voli',
+      title : 'Diselenggarakan di Lapangan SM 10 March 2023 pukul 15.00 WIB ',
+      image: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/event-flyer%2Cfootball-flyer%2Csoccer-flyer-design-template-5051f2d1316bafc8d97bfff9ec71c0ca_screen.jpg?ts=1637004790',
+      createdAt: '8 March, 2023',
+    },
+    {
+      id: 5,
+      category: 'Sepak Bola',
+      title : 'Diselenggarakan di Lapangan Lowokwaru 30 Mei 2023 pukul 20.00 WIB ',
+      image: 'https://marketplace.canva.com/EAFrsqv6wps/1/0/1131w/canva-kuning-hijau-simpel-ilustrasi-kompetisi-futsal-poster-7X4ud5Cbxqw.jpg',
+      createdAt: '28 Mei, 2023',
+    },
+    
+  ];

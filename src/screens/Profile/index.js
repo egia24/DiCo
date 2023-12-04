@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity,} from 'react-native';
 import {Setting2,LoginCurve } from 'iconsax-react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';

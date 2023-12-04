@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TouchableOpacity,ScrollView, StyleSheet,  Text, View, Image, ImageBackground, FlatList} from 'react-native';
+import {TouchableOpacity,ScrollView, StyleSheet,  Text, View, Animated} from 'react-native';
 import { Notification} from 'iconsax-react-native';
 import { home } from '../../../data';
 import { fontType, colors } from '../../theme';

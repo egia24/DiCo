@@ -1,12 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Archive, Clock, Message} from 'iconsax-react-native';
+import {Archive} from 'iconsax-react-native';
 import React from 'react';
 import { fontType, colors } from '../theme';
 
 const ItemEvent= ({item}) => {
   return (
-    <View style={styles.cardItem}>
+    <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('BlogDetail', {blogId: item.id})}>
       <FastImage
         style={styles.cardImage}
         source={{
@@ -37,7 +37,7 @@ const ItemEvent= ({item}) => {
           <Text style={styles.cardText}>{item.totalComments}</Text>
         </View>
       </View>
-    </View>
+      </TouchableOpacity>
   );
 };
 

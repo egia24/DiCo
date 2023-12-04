@@ -1,35 +1,19 @@
 import React, {useState} from 'react';
-import {TextInput,TouchableOpacity,ScrollView, StyleSheet,  Text, View, Image, ImageBackground, FlatList} from 'react-native';
-import {Element3, Notification, SearchNormal} from 'iconsax-react-native';
-import {BlogList, CategoryList} from '../../../data';
+import {TouchableOpacity,ScrollView, StyleSheet,  Text, View, Image, ImageBackground, FlatList} from 'react-native';
+import { Notification} from 'iconsax-react-native';
+import { home } from '../../../data';
 import { fontType, colors } from '../../theme';
-import { ListHorizontal, ItemSmall } from '../../components';
+import { ListHorizontal } from '../../components';
 
 
 export default function Home() {
-  const [searchText, setSearchText] = useState('');
-  const handleSearchPress = text => {
-  setSearchText(text);
-  }
   return (
- 
     <View style={styles.container}> 
     <View style={styles.header}>
       <Text style={styles.title}>DiCo</Text>
       <Notification color={colors.black()} variant="Linear" size={24} />
     </View>
-    <View style={styles.listCategory}>
-      <FlatListCategory />
-    </View>
     <View style={{paddingHorizontal: 24, marginTop: 10}}>
-    <View style={styles.searchContainer}>
-      <TextInput style={styles.input} placeholder="Cari Product" onChangeText={handleSearchPress} value={searchText}placeholderTextColor="grey"/>
-      <View style={styles.searchButtonContainer}>
-      <TouchableOpacity style={styles.searchButton}>
-      <SearchNormal color={colors.black()} variant="Linear" size={24} style={styles.icon}/>
-      </TouchableOpacity>
-    </View>
-    </View>
     </View>
     <ListBlog/>
   </View>
@@ -37,12 +21,12 @@ export default function Home() {
 }
 
 const ListBlog = () => {
-  const horizontalData = BlogList.slice(0, 5);
-  const verticalData = BlogList.slice(5);
+  const horizontalData = home.slice(0, 5);
+  const verticalData = home.slice(5);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.listBlog}>
-        <Text style={styles.title2}>PRODUCT</Text>
+        <Text style={styles.title2}>WELCOME</Text>
         <ListHorizontal data={horizontalData} />
         <Text style={styles.title2}>EVENT</Text>
         <ListHorizontal data={verticalData}/>
@@ -74,18 +58,8 @@ const FlatListCategory = () => {
       />
     );
   };
-  return (
-    <FlatList
-      data={CategoryList}
-      keyExtractor={item => item.id}
-      renderItem={item => renderItem({...item})}
-      ItemSeparatorComponent={() => <View style={{width: 10}} />}
-      contentContainerStyle={{paddingHorizontal: 24}}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-    />
-  );
 };
+
 const styles = StyleSheet.create({
     title2: {
       fontWeight: 'bold',
@@ -93,10 +67,11 @@ const styles = StyleSheet.create({
       fontFamily: fontType['Pjs-ExtraBold'],
       color: colors.black(),
       marginLeft :20,
+      paddingTop : 20,
     },
     container: {
       flex: 1,
-      backgroundColor: colors.white(),
+      backgroundColor: "white",
     },
     searchContainer: {
       flexDirection: 'row',
@@ -125,10 +100,10 @@ const styles = StyleSheet.create({
     },
     title: {
       textAlign: 'center',
-      fontSize: 20,
+      fontSize: 30,
       fontFamily: fontType['Pjs-ExtraBold'],
-      color: colors.black(),
-
+      color: colors.blue(),
+      fontWeight : 'bold',
     },
     listCategory: {
       paddingVertical: 10,

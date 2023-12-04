@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { Event } from './src/screens';
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './src/Navigation/Router';
 export default function App() {
-  return <Event />;
+  return (
+    <NavigationContainer>
+     <Router/>
+    </NavigationContainer>
+  );
 }

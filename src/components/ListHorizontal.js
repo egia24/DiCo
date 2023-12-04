@@ -1,11 +1,14 @@
 import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import {Receipt21} from 'iconsax-react-native';
+import {Archive} from 'iconsax-react-native';
 import FastImage from 'react-native-fast-image';
 import { fontType, colors } from '../theme';
+import {useNavigation} from '@react-navigation/native';
+
 const ItemHorizontal = ({item, variant, onPress}) => {
-  return (
-    <View style={itemHorizontal.cardItem}>
+  const navigation = useNavigation();
+  return ( 
+    <TouchableOpacity style={itemHorizontal.cardItem} onPress={() => navigation.navigate('BlogDetail', {blogId: item.id})}>
       <FastImage
         style={itemHorizontal.cardImage}
         source={{
@@ -22,13 +25,13 @@ const ItemHorizontal = ({item, variant, onPress}) => {
           <View>
             <View style={itemHorizontal.cardIcon}>
               <TouchableOpacity onPress={onPress}>
-                <Receipt21 color={colors.white()} variant={variant} size={20} />
+                <Archive color="#FF8A65" variant={variant} size={20}/>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </FastImage>
-    </View>
+      </TouchableOpacity>
   );
 };
 const ListHorizontal = ({data}) => {
@@ -66,6 +69,7 @@ export default ListHorizontal;
 const itemHorizontal = StyleSheet.create({
   cardItem: {
     width: 280,
+    paddingTop : 10,
   },
   cardImage: {
     width: '100%',
@@ -75,7 +79,7 @@ const itemHorizontal = StyleSheet.create({
   cardContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 15,
+    padding: 10,
   },
   cardInfo: {
     justifyContent: 'flex-end',
@@ -89,15 +93,12 @@ const itemHorizontal = StyleSheet.create({
     color: colors.white(),
   },
   cardText: {
-    fontSize: 10,
+    fontSize: 15,
     color: colors.white(),
     fontFamily: fontType['Pjs-Medium'],
   },
   cardIcon: {
-    backgroundColor: colors.white(0.33),
     padding: 5,
-    borderColor: colors.white(),
-    borderWidth: 0.5,
     borderRadius: 5,
   },
 });

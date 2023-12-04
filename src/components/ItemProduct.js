@@ -1,12 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Archive, Clock, Message} from 'iconsax-react-native';
+import {Archive} from 'iconsax-react-native';
 import React from 'react';
 import { fontType, colors } from '../theme';
+import {useNavigation} from '@react-navigation/native';
 
 const ItemProduct= ({item}) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.cardItem}>
+     <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('BlogDetail', {blogId: item.id})}>
       <FastImage
         style={styles.cardImage}
         source={{
@@ -26,18 +28,18 @@ const ItemProduct= ({item}) => {
             <Text style={styles.cardCategory}>{item.category}</Text>
             <Text style={styles.cardTitle}>{item.title}</Text>
           </View>
+          <TouchableOpacity>
           <Archive
             size="20"
             color="#FF8A65"
           />
+          </TouchableOpacity>
         </View>
         <View style={styles.cardInfo}>
-          <Text style={styles.cardText}>{item.createdAt}</Text>
-
-          <Text style={styles.cardText}>{item.totalComments}</Text>
+          <Text style={styles.cardText}>{item.price}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -90,5 +92,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomLeftRadius : 10,
     elevation: 1,
+    color: colors.white(0.1),
   },
 });

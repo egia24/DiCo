@@ -1,6 +1,9 @@
 import Home from "./Home";
-import BlogDetail from "./BlogDetail";
 import Product from "./Product";
 import Event from "./Event";
 import Profile from "./Profile";
-export { Home,BlogDetail, Product, Event, Profile}
+import Search from "./Search";
+import AddProductForm from "./AddProductForm";
+import EditProductform from "./EditProductForm";
+import ProductDetail from "./ProductDetail";
+export { Home,ProductDetail, Product, Event, Profile, Search, AddProductForm, EditProductform}

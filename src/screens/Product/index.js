@@ -1,11 +1,14 @@
-import {StyleSheet, Text, View, ScrollView, FlatList, Animated} from 'react-native';
-import React, {useRef} from 'react';
-import {product} from '../../../data';
+import {StyleSheet, Text, View, TouchableWithoutFeedback,TouchableOpacity, Animated, ActivityIndicator, RefreshControl} from 'react-native';
+import React, {useRef, useState, useCallback} from 'react';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {ItemProduct} from '../../components'; 
-import {SearchNormal1} from 'iconsax-react-native';
+import {SearchNormal1,Add, Setting2} from 'iconsax-react-native';
 import { fontType, colors } from '../../theme';
+import axios from 'axios';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Product = () => {
+ 
   const scrollY = useRef(new Animated.Value(0)).current;
   const diffClampY = Animated.diffClamp(scrollY, 0, 542);
   const recentY = diffClampY.interpolate({
@@ -14,36 +17,78 @@ const Product = () => {
     extrapolate: 'clamp',
   });
 
-  const recentBlog = product.slice(0);
+  const navigation = useNavigation();
+  const [loading, setLoading] = useState(true);
+  const [productData, setProductData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);  
+  const getDataProduct = async () => {
+    try {
+      const response = await axios.get(
+        'https://6570b6ba09586eff6641d794.mockapi.io/DiCo/product',
+      );
+      setProductData(response.data);
+      setLoading(false)
+    } catch (error) {
+        console.error(error);
+    }
+  };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      getDataProduct()
+      setRefreshing(false);
+    }, 1500);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getDataProduct();
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[recent.container, {transform: [{translateY: recentY}]}]}>
-        <Text style={recent.text}>PRODUCT</Text>
-      </Animated.View>
+      <TouchableWithoutFeedback onPress={()=>navigation.navigate('SearchPage')}>
         <View style={styles.header}>
         <View style={styles.bar}>
           <SearchNormal1 size={18} color={colors.grey(1)} variant="Linear" />
           <Text style={styles.placeholder}>Search</Text>
         </View>
       </View>
+      </TouchableWithoutFeedback>
+      <ScrollView   
+       showsVerticalScrollIndicator={false}
+       contentContainerStyle={{
+         paddingHorizontal: 24,
+         gap: 10,
+         paddingVertical: 20,
+      }} refreshControl={
+         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY}}}],
           {useNativeDriver: true},
-        )}
-        contentContainerStyle={{paddingTop: 142}}>
-        <View style={styles.listCard}>
-          {recentBlog.map((item, index) => (
-            <ItemProduct item={item} key={index} />
-          ))}
-        </View>
+        )}> 
       </Animated.ScrollView>
-
+      <View style={{paddingVertical: 50, gap: 10}}>
+          {loading ? (
+            <ActivityIndicator size={'large'} color={colors.blue()} />
+          ) : (
+            productData.map((item, index) => <ItemProduct item={item} key={index} />)
+          )}
+        </View>
+      </ScrollView>
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={() => navigation.navigate('AddProduct')}>
+        <Add color={colors.white()} variant="Linear" size={27} />
+      </TouchableOpacity>
     </View>
   );
-};
+    };
 
 export default Product;
 
@@ -92,6 +137,23 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+  },
+  floatingButton: {
+    backgroundColor: colors.black(),
+    padding: 15,
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    borderRadius: 10,
+    shadowColor: colors.blue(),
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+
+    elevation: 8,
   },
   
 });

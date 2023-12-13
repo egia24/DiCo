@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { Product } from './src/screens';
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './src/Navigation/Router';
 export default function App() {
-  return <Product />;
+  return (
+    <NavigationContainer>
+     <Router/>
+    </NavigationContainer>
+  );
 }

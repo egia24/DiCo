@@ -1,11 +1,9 @@
-import {ScrollView, StyleSheet, Text, View, TouchableOpacity,} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Setting2,LoginCurve } from 'iconsax-react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import {ProfileData, BlogList, product} from '../../../data';
-import {ItemProduct, ItemSmall} from '../../components';
+import {ProfileData, BlogList} from '../../../data';
 import { fontType, colors } from '../../theme';
-import Product from '../Product';
 
 const formatNumber = number => {
   if (number >= 1000000000) {
@@ -20,7 +18,7 @@ const formatNumber = number => {
   return number.toString();
 };
 
-
+const data = BlogList.slice(5);
 const Profile = () => {
   return (
     <View style={styles.container}>

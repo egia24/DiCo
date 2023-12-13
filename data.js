@@ -1,53 +1,18 @@
   export const product = [
     {
       id: 1,
-      title: 'Menggunakan frame HM Graphite / Tungsten dan Shaftnya menggunakan	HM Graphite / NANOMESH NEO kemudian untuk length 10 mm longer',
-      category: 'Astrox 3 DG ST',
+      title: 'Astrox 3 DG ST',
+      category: 'Badminton',
       price: 'Rp450.000.00',
       image:  'https://www.yonex.com/media/catalog/product/a/x/axe13_blackblue.png?quality=80&fit=bounds&height=400&width=150&canvas=600:400',
+      totalComments: 89,
+      totalLikes: 2300,
+      content: `Astrox 3 DG ST ( Unstrung )
+Flex STIFF
+Frame HM Graphite / Tungsten
+Shaft HM Graphite / NANOMESH NEO`,
     },
-    {
-      id: 2,
-      title: 'Menggunakan frame	Aluminum dan shaft menggunakan	Graphite lalu untuk weightnya Grip	3U (Avg. 88g)',
-      category: 'Astrox E 13',
-      image:'https://www.yonex.com/media/catalog/product/a/x/ax3dg-st.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
-      price: 'Rp1.000.000.00',
-    },
-    {
-      id: 3,
-      title : 'YONEX AEROSENSA shuttlecocks are the official shuttlecock for the world’s leading international tournaments. ',
-      category: 'Aerosensa 50',
-      image: 'https://www.yonex.com/media/catalog/product/a/e/aerosensa_50.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
-      price: 'Rp200.000.00',
-    },
-    {
-      id: 4,
-      title : 'The combination of close-to-feather shuttlecock flight performance and four to five times more durability ',
-      category: 'Mavis 2000',
-      image: 'https://www.yonex.com/media/catalog/product/m/a/mavis2000w.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
-      price:'Rp150.000.00',
-    },
-    {
-      id: 5,
-      title : 'Terdapat color(s) yaitu	New Color Lightning Yellow launching June 2023, Sky Blue, Black, Black / Orange, dan untuk sizenya (LxWxH)	75 x 13 x 30cm',
-      category: 'Team Tournamet Bag',
-      image: 'https://www.yonex.com/media/catalog/product/b/a/ba42331w_bkor.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
-      price: 'Rp400.000.00',
-    },
-    {
-      id: 6,
-      category: 'Pro Racquet Bag',
-      title : 'Terdapat color(s) yaitu New Color Mist Purpl Smash Pink,Fine Blue, Tango Red, Green Purple, Black, dan untk sizenya (LxWxH)	78 x 38 x 34 cm',
-      image: 'https://www.yonex.com/media/catalog/product/b/a/ba92229_tagr.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
-      price: 'Rp700.000.00',
-    },
-    {
-      id: 7,
-      title : 'Terdapat color(s) yaitu New Color Lightning Yellow launching June 2023, Black, Fine Blue dan untuk sizenya (LxWxH)	31 x 20.5 x 47 cm (26L)',
-      category: 'Pro Backpack M',
-      image: 'https://www.yonex.com/media/catalog/product/b/a/ba92212m_lny.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
-      price:'Rp800.000.00',
-    },
+    
     
   ];
 
@@ -158,7 +123,7 @@
     {
         id: 1,
         title: 'YONEX ASTROX 3 DG ST BLACK BLUE',
-        category: 'Car',
+        category: 'Badminton',
         image: 'https://www.yonex.com/media/catalog/product/a/x/axe13_blackblue.png?quality=80&fit=bounds&height=400&width=150&canvas=600:400', 
         createdAt: 'Nov 10, 2023',
         totalComments: 89,
@@ -186,9 +151,9 @@ Tecnology :
         price : 'Price: Rp 450.000.00',
     },
     {
-      id: 2,
+      id: 1,
       title: 'Astrox E 13',
-      category: 'Music',
+      category: 'Badminton',
       image: 'https://www.yonex.com/media/catalog/product/a/x/ax3dg-st.png?quality=80&fit=bounds&height=600&width=300&canvas=600:400',
       createdAt: 'Nov 10, 2023',
       totalComments: 89,
@@ -210,6 +175,7 @@ Tecnology :
     },    
     {
         id: 3,
+        category: 'Badminton',
         title: 'Aerosensa 50',
         image:'https://www.yonex.com/media/catalog/product/a/e/aerosensa_50.png?quality=80&fit=bounds&height=800&width=450&canvas=700:400',
         totalComments: 89,
@@ -231,6 +197,7 @@ Temperature Grade :
     {
         id: 4,
         title: 'Mavis 2000',
+        category: 'Badminton',
         image:'https://www.yonex.com/media/catalog/product/m/a/mavis2000w.png?quality=80&fit=bounds&height=800&width=450&canvas=700:400',
         totalComments: 89,
         totalLikes: 2300,
@@ -255,6 +222,7 @@ FAST / 0ºC~13ºC`,
     {
         id: 5,
         title: 'Team Tournamet Bag',
+        category: 'Badminton',
         image:'https://www.yonex.com/media/catalog/product/b/a/ba42331w_bkor.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
         totalComments: 89,
         totalLikes: 2300,
@@ -271,6 +239,7 @@ Shoe PocketShoe Pocket`,
     {
         id: 6,
         title: 'Pro Racquet Bag',
+        category: 'Badminton',
         image:'https://www.yonex.com/media/catalog/product/b/a/ba92229_tagr.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
         totalComments: 89,
         totalLikes: 2300,
@@ -289,6 +258,7 @@ Thermo GuardThermo Guard`,
     {
         id: 7,
         title: 'Pro Backpack M',
+        category: 'Badminton',
         image: 'https://www.yonex.com/media/catalog/product/b/a/ba92212m_lny.png?quality=80&fit=bounds&height=819&width=600&canvas=600:819',
         totalComments: 89,
         totalLikes: 2300,

@@ -6,7 +6,7 @@ import { fontType, colors } from '../theme';
 
 const ItemEvent= ({item}) => {
   return (
-    <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('BlogDetail', {blogId: item.id})}>
+    <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('ProductDetail', {productId: item.id})}>
       <FastImage
         style={styles.cardImage}
         source={{

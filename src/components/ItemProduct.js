@@ -1,17 +1,21 @@
 import {StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Archive} from 'iconsax-react-native';
+import {Archive, Clock, Message} from 'iconsax-react-native';
 import React from 'react';
 import { fontType, colors } from '../theme';
+import {useNavigation} from '@react-navigation/native';
 
 const ItemProduct= ({item}) => {
+  const navigation = useNavigation();
   return (
-     <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('BlogDetail', {blogId: item.id})}>
+    <TouchableOpacity
+    style={styles.cardItem}
+    onPress={() => navigation.navigate('ProductDetail', {productId: item.id})}>
       <FastImage
         style={styles.cardImage}
         source={{
-          uri: item.image,
           headers: {Authorization: 'someAuthToken'},
+          uri: item.image,
           priority: FastImage.priority.high,
         }}
         resizeMode={FastImage.resizeMode.cover}
@@ -22,9 +26,10 @@ const ItemProduct= ({item}) => {
             flexDirection: 'row',
             gap:10
           }}>
-          <View style={{gap: 10, flex:1}}>
-            <Text style={styles.cardCategory}>{item.category}</Text>
-            <Text style={styles.cardTitle}>{item.title}</Text>
+          <View style={{gap: 9, flex:1}}>
+          <Text style={styles.cardTitle}>{item?.title}</Text>
+          <Text style={styles.cardCategory}>{item?.content}</Text>
+          <Text style={styles.cardCategory}>{item.category?.name}</Text>
           </View>
           <TouchableOpacity>
           <Archive
@@ -40,56 +45,59 @@ const ItemProduct= ({item}) => {
     </TouchableOpacity>
   );
 };
-
 export default ItemProduct;
 const styles = StyleSheet.create({
   listCard: {
     paddingHorizontal: 24,
     paddingVertical: 10,
-    gap: 15,
+    gap: 10,
   },
   cardItem: {
-    backgroundColor: colors.blue(0.03),
+    backgroundColor: colors.white(0),
     flexDirection: 'row',
-    borderRadius: 10,
+    borderRadius: 40,
   },
   cardCategory: {
     color: colors.black(),
-    fontSize: 15,
+    fontSize: 11,
     fontFamily: fontType['Pjs-ExtraBold'],
+    fontWeight: 'bold',
   },
   cardTitle: {
-    fontSize: 10,
+    fontSize: 11,
     fontFamily: fontType['Pjs-Bold'],
-    color: colors.grey(),
+    color: colors.blue(),
+    fontWeight: 'bold',
   },
   cardText: {
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: fontType['Pjs-ExtraBold'],
-    color: colors.grey(),
+    color: colors.blue(),
   },
   cardImage: {
-    width: 100,
-    height: 120,
+    width: 130,
+    height: 'auto',
     resizeMode: 'cover',
     borderBottomLeftRadius : 10,
-    backgroundColor: "white",
+    backgroundColor: colors.white(0),
   },
   cardInfo: {
     flexDirection: 'row',
-    gap: 5,
+    gap: 10,
     alignItems: 'center',
   },
   cardContent: {
-    gap: 10,
+    gap: 5,
     justifyContent: 'space-between',
-    paddingRight: 10,
-    paddingLeft: 15,
+    paddingRight: 20,
+    paddingTop : 20,
+    paddingLeft: 10,
     flex: 1,
     paddingVertical: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius : 10,
     elevation: 1,
-    color: colors.white(0.1),
+    color: colors.white(),
   },
 });
+

@@ -3,10 +3,12 @@ import React, {useState} from 'react';
 import {Archive} from 'iconsax-react-native';
 import FastImage from 'react-native-fast-image';
 import { fontType, colors } from '../theme';
+import {useNavigation} from '@react-navigation/native';
 
 const ItemHorizontal = ({item, variant, onPress}) => {
-  return ( 
-    <TouchableOpacity style={itemHorizontal.cardItem} onPress={() => navigation.navigate('BlogDetail', {blogId: item.id})}>
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity style={itemHorizontal.cardItem} onPress={() => navigation.navigate('ProductDetail', {productId: item.id})}>
       <FastImage
         style={itemHorizontal.cardImage}
         source={{

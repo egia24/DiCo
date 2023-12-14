@@ -26,9 +26,8 @@ const ItemProduct= ({item}) => {
             flexDirection: 'row',
             gap:10
           }}>
-          <View style={{gap: 9, flex:1}}>
+          <View style={{gap: 10, flex:1}}>
           <Text style={styles.cardTitle}>{item?.title}</Text>
-          <Text style={styles.cardCategory}>{item?.content}</Text>
           <Text style={styles.cardCategory}>{item.category?.name}</Text>
           </View>
           <TouchableOpacity>
@@ -59,18 +58,18 @@ const styles = StyleSheet.create({
   },
   cardCategory: {
     color: colors.black(),
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: fontType['Pjs-ExtraBold'],
     fontWeight: 'bold',
   },
   cardTitle: {
-    fontSize: 11,
+    fontSize: 17,
     fontFamily: fontType['Pjs-Bold'],
     color: colors.blue(),
     fontWeight: 'bold',
   },
   cardText: {
-    fontSize: 14,
+    fontSize: 18,
     fontFamily: fontType['Pjs-ExtraBold'],
     color: colors.blue(),
   },
@@ -79,15 +78,16 @@ const styles = StyleSheet.create({
     height: 'auto',
     resizeMode: 'cover',
     borderBottomLeftRadius : 10,
+    borderTopLeftRadius : 10,
     backgroundColor: colors.white(0),
   },
   cardInfo: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 0,
     alignItems: 'center',
   },
   cardContent: {
-    gap: 5,
+    gap: 30,
     justifyContent: 'space-between',
     paddingRight: 20,
     paddingTop : 20,

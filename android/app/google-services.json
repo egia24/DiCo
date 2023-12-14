@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1097020023702",
+    "project_id": "dico-776cf",
+    "storage_bucket": "dico-776cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097020023702:android:455005abf8e00c59f4f3b7",
+        "android_client_info": {
+          "package_name": "com.dico"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_YD11Ddt0TzIf_tu-0ZwsKaCxWeeEeI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

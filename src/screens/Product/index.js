@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View, TouchableWithoutFeedback,TouchableOpacity, Animated, ActivityIndicator, RefreshControl} from 'react-native';
-import React, {useRef, useState, useCallback} from 'react';
+import React, {useRef, useState, useCallback, useEffect} from 'react';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import FastImage from 'react-native-fast-image';
 import {ItemProduct} from '../../components'; 
-import {SearchNormal1,Add, Setting2} from 'iconsax-react-native';
+import {SearchNormal1,Add,Edit, Setting2} from 'iconsax-react-native';
 import { fontType, colors } from '../../theme';
-import axios from 'axios';
 import { ScrollView } from 'react-native-gesture-handler';
+import firestore from '@react-native-firebase/firestore';
 
 const Product = () => {
  
@@ -19,33 +20,44 @@ const Product = () => {
 
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
-  const [productData, setProductData] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);  
-  const getDataProduct = async () => {
-    try {
-      const response = await axios.get(
-        'https://6570b6ba09586eff6641d794.mockapi.io/DiCo/product',
-      );
-      setProductData(response.data);
-      setLoading(false)
-    } catch (error) {
-        console.error(error);
-    }
-  };
+  const [blogData, setProductData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('product')
+      .onSnapshot(querySnapshot => {
+        const products = [];
+        querySnapshot.forEach(documentSnapshot => {
+          products.push({
+            ...documentSnapshot.data(),
+            id: documentSnapshot.id,
+          });
+        });
+        setProductData(products);
+        setLoading(false);
+      });
+    return () => subscriber();
+  }, []);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      getDataProduct()
+      firestore()
+        .collection('product')
+        .onSnapshot(querySnapshot => {
+          const products = [];
+          querySnapshot.forEach(documentSnapshot => {
+            products.push({
+              ...documentSnapshot.data(),
+              id: documentSnapshot.id,
+            });
+          });
+          setProductData(products);
+        });
       setRefreshing(false);
     }, 1500);
   }, []);
-
-  useFocusEffect(
-    useCallback(() => {
-      getDataProduct();
-    }, [])
-  );
 
   return (
     <View style={styles.container}>
@@ -77,21 +89,20 @@ const Product = () => {
           {loading ? (
             <ActivityIndicator size={'large'} color={colors.blue()} />
           ) : (
-            productData.map((item, index) => <ItemProduct item={item} key={index} />)
+            blogData.map((item, index) => <ItemProduct item={item} key={index} />)
           )}
-        </View>
+      </View>
       </ScrollView>
-      <TouchableOpacity
-        style={styles.floatingButton}
-        onPress={() => navigation.navigate('AddProduct')}>
-        <Add color={colors.white()} variant="Linear" size={27} />
-      </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.floatingButton}
+      onPress={() => navigation.navigate('AddProduct')}>
+      <Add color={colors.white()} variant="Linear" size={20} />
+    </TouchableOpacity>
     </View>
   );
     };
 
 export default Product;
-
 const styles = StyleSheet.create({
   listCard: {
     paddingHorizontal: 20,

@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,onRefresh, ActivityIndicator} from 'react-native';
-import {ArrowLeft} from 'iconsax-react-native';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator} from 'react-native';
+import {ArrowLeft, AddSquare, Add} from 'iconsax-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {fontType, colors} from '../../theme';
-import axios from 'axios';
+import FastImage from 'react-native-fast-image';
+import ImagePicker from 'react-native-image-crop-picker';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
+
 
 const EditProductForm = ({route}) => {
 const {productId} = route.params;
@@ -18,64 +22,92 @@ const dataCategory = [
     title: '',
     content: '',
     category: {},
-    price: '',
   });
   const handleChange = (key, value) => {
     setProductData({
       ...productData,
       [key]: value,
-    });
+    }); 
   };
   const [image, setImage] = useState(null);
+  const [oldImage, setOldImage] = useState(null);
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    getProductById();
+    const subscriber = firestore()
+      .collection('product')
+      .doc(productId)
+      .onSnapshot(documentSnapshot => {
+        const productData = documentSnapshot.data();
+        if (productData) {
+          console.log('Product data: ', productData);
+          setProductData({
+            title: productData.title,
+            content: productData.content,
+            price : productData.price,
+            category: {
+              id: productData.category.id,
+              name: productData.category.name,
+            },
+          });
+          setOldImage(productData.image);
+          setImage(productData.image);
+          setLoading(false);
+        } else {
+          console.log(`Product with ID ${productId} not found.`);
+        }
+      });
+    setLoading(false);
+    return () => subscriber();
   }, [productId]);
 
-  const getProductById = async () => {
-    try {
-      const response = await axios.get(
-        `https://6570b6ba09586eff6641d794.mockapi.io/DiCo/product/${productId}`,
-      );
-      setProductData({
-        title : response.data.title,
-        content : response.data.content,
-        price : response.data.price,
-        category : {
-            id : response.data.category.id,
-            name : response.data.category.name
-        }
+  const handleImagePick = async () => {
+    ImagePicker.openPicker({
+      width: 1920,
+      height: 1920,
+      cropping: true,
+    })
+      .then(image => {
+        console.log(image);
+        setImage(image.path);
       })
-    setImage(response.data.image)
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
+      .catch(error => {
+        console.log(error);
+      });
   };
+
   const handleUpdate = async () => {
     setLoading(true);
+    let filename = image.substring(image.lastIndexOf('/') + 1);
+    const extension = filename.split('.').pop();
+    const name = filename.split('.').slice(0, -1).join('.');
+    filename = name + Date.now() + '.' + extension;
+    const reference = storage().ref(`productimages/${filename}`);
     try {
-      await axios
-        .put(`https://6570b6ba09586eff6641d794.mockapi.io/DiCo/product/${productId}`, {
-          title: productData.title,
-          category: productData.category,
-          image,
-          content: productData.content,
-          price : productData.price,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      if (image !== oldImage && oldImage) {
+        const oldImageRef = storage().refFromURL(oldImage);
+        await oldImageRef.delete();
+      }
+      if (image !== oldImage) {
+        await reference.putFile(image);
+      }
+      const url =
+        image !== oldImage ? await reference.getDownloadURL() : oldImage;
+      await firestore().collection('product').doc(productId).update({
+        title: productData.title,
+        category: productData.category,
+        image: url,
+        content: productData.content,
+        price: productData.price,
+      });
       setLoading(false);
-      navigation.navigate('Product');
-    } catch (e) {
-      console.log(e);
+      console.log('Product Updated!');
+      navigation.navigate('ProductDetail', {productId});
+    } catch (error) {
+      console.log(error);
     }
   };
+
 
   return (
     <View style={styles.container}>
@@ -159,19 +191,69 @@ const dataCategory = [
                   }
                   style={[category.item, {backgroundColor: bgColor}]}>
                   <Text style={[category.name, {color: color}]}>
-                    {item.name}
+                    {item.name} 
                   </Text>
                 </TouchableOpacity>
               );
             })}
-          </View>
+            </View>
         </View>
-      </ScrollView>
-      <View style={styles.bottomBar}>
+        {image ? (
+          <View style={{position: 'relative'}}>
+            <FastImage
+              style={{width: '100%', height: 127, borderRadius: 5}}
+              source={{
+                uri: image,
+                headers: {Authorization: 'someAuthToken'},
+                priority: FastImage.priority.high,
+              }}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+            <TouchableOpacity
+              style={{
+                position: 'absolute',
+                top: -5,
+                right: -5,
+                backgroundColor: colors.blue(),
+                borderRadius: 25,
+              }}
+              onPress={() => setImage(null)}>
+              <Add
+                size={20}
+                variant="Linear"
+                color={colors.white()}
+                style={{transform: [{rotate: '45deg'}]}}
+              />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <TouchableOpacity onPress={handleImagePick}>
+            <View
+              style={[
+                textInput.borderDashed,
+                {
+                  gap: 10,
+                  paddingVertical: 30,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+              ]}>
+              <AddSquare color={colors.grey(0.6)} variant="Linear" size={42} />
+              <Text
+                style={{
+                  fontFamily: fontType['Pjs-Regular'],
+                  fontSize: 12,
+                  color: colors.grey(0.6),
+                }}>
+                Upload Thumbnail
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity style={styles.button} onPress={handleUpdate}>
           <Text style={styles.buttonLabel}>Update</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
       {loading && (
         <View style={styles.loadingOverlay}>
           <ActivityIndicator size="large" color={colors.blue()} />

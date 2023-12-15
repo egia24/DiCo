@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 17,
     fontFamily: fontType['Pjs-Bold'],
-    color: colors.blue(),
+    color: colors.black(),
     fontWeight: 'bold',
   },
   cardText: {
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: fontType['Pjs-ExtraBold'],
     color: colors.blue(),
   },
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     borderTopRightRadius: 10,
-    borderBottomLeftRadius : 10,
     elevation: 1,
     color: colors.white(),
   },

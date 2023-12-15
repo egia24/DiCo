@@ -6,5 +6,6 @@ const fontType = {
     'Pjs-SemiBold' : 'PlusJakartaSans-SemiBold',
     'Pjs-Bold' : 'PlusJakartaSans-Bold',
     'Pjs-ExtraBold' : 'PlusJakartaSans-ExtraBold',
+    'rubik': 'RubikBubbles-Regular',
 }
 export default fontType;

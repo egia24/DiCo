@@ -6,4 +6,7 @@ import Search from "./Search";
 import AddProductForm from "./AddProductForm";
 import EditProductform from "./EditProductForm";
 import ProductDetail from "./ProductDetail";
-export { Home,ProductDetail, Product, Event, Profile, Search, AddProductForm, EditProductform}
+import Login from "./Login";
+import Register from "./Register";
+import SplashScreen from "./SplashScreen";
+export { Home,ProductDetail, Product, Event, Profile, Search, AddProductForm, EditProductform,Login, Register, SplashScreen}
